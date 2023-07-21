@@ -1,0 +1,93 @@
+{
+  "name": "sql2erd-vscode-extension",
+  "displayName": "SQL to ERD",
+  "description": "Generates ERD from SQL. PostgreSQL only supported for now.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Vadim Chernov"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:sql"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sql2erd.render",
+        "title": "Open ERD to the Side",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "sql2erd.renderAlt",
+        "title": "Open ERD",
+        "icon": "$(open-preview)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sql2erd.render",
+        "key": "ctrl+k v"
+      },
+      {
+        "command": "sql2erd.renderAlt",
+        "key": "ctrl+shift+v"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "sql2erd.render",
+          "alt": "sql2erd.renderAlt",
+          "when": "resourceLangId == sql",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "SQL to ERD",
+      "properties": {
+        "sql2erd.binPath": {
+          "type": "string",
+          "default": "sql2erd.exe",
+          "description": "Path to sql2erd.exe binary"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimuls/sql2erd-vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dimuls/sql2erd-vscode-extension/issues",
+    "email": "dimuls@yandex.ru"
+  },
+  "homepage": "https://github.com/dimuls/sql2erd-vscode-extension/blob/master/README.md",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.3.2",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  }
+}
